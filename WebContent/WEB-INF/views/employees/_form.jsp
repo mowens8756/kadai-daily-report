@@ -23,5 +23,5 @@
     <option value="1"<c:if test="${employee.admin_flag == 1}"> selected</c:if>>管理者</option>
 </select>
 <br /><br />
-<input type="hidden" name="hidden" value="${_token}" />
+<input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>
