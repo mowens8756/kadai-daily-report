@@ -2,6 +2,7 @@ package controllers.reports;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class ReportsCreateServlet extends HttpServlet {
             Date report_date = new Date(System.currentTimeMillis());
             String rd_str = request.getParameter("report_date");
             if(rd_str != null && !rd_str.equals("")){
-            report_date = Date.valueOf(request.getParameter("report_date"));
+                report_date = Date.valueOf(request.getParameter("report_date"));
             }
             r.setReport_date(report_date);
             r.setTitle(request.getParameter("title"));
@@ -52,6 +53,18 @@ public class ReportsCreateServlet extends HttpServlet {
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
+            Time time_in = new Time(System.currentTimeMillis());
+            String ti_str = request.getParameter("time_in");
+            if(ti_str != null && !ti_str.equals("")){
+                time_in = Time.valueOf(request.getParameter("time_in")+":00");
+            }
+            r.setTime_in(time_in);
+            Time time_out = new Time(System.currentTimeMillis());
+            String to_str = request.getParameter("time_out");
+            if(to_str != null && !to_str.equals("")){
+                time_out = Time.valueOf(request.getParameter("time_out")+":00");
+            }
+            r.setTime_out(time_out);
             List<String> errors = ReportValidator.validate(r);
             if(errors.size()>0){
                 em.close();

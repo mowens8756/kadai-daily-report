@@ -21,5 +21,11 @@
 <label for="content">内容</label><br />
 <textarea name="content" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
+<label for="time_in">出勤時間</label><br />
+<input type="time" name="time_in" value="<fmt:formatDate value='${report.time_in}' pattern='HH:mm' />" />
+<br /><br />
+<label for="time_out">退勤時間</label><br />
+<input type="time" name="time_out" value="<fmt:formatDate value='${report.time_out}' pattern='HH:mm' />" />
+<br /><br />
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>
